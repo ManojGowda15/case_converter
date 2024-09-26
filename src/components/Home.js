@@ -53,27 +53,32 @@ export default function Home(props) {
         setText(event.target.value);
     };
 
-    const [text, setText] = useState("Enter your text")
+    const[myStyle, stMyStyle] = useState({
+        color:'black',
+        backgroundColor: 'white',
+    })
+    
+    const [text, setText] = useState("")
     return (
         <>
-            <div className="container">
+            <div className="container" style={myStyle}>
                 <div className="mb-3">
                     <label htmlFor="exampleFormControlTextarea1" className="form-label" style={{ fontSize: `25px`, fontWeight: `bold` }}>{props.labelText}</label>
-                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="10" onChange={handleChange} value={text}></textarea>
+                    <textarea className="form-control" id="exampleFormControlTextarea1" placeholder='Enter your text here' rows="10" onChange={handleChange} value={text}></textarea>
                 </div>
             </div>
 
             <div className="container">
-                <button type="button" className="btn btn-light ms-3" style={{ fontSize: `18px` }} onClick={handleUpper}>{props.btnUpr}</button>
-                <button type="button" className="btn btn-light ms-3" style={{ fontSize: `18px` }} onClick={handleLower}>{props.btnLwr}</button>
-                <button type="button" className="btn btn-light ms-3" style={{ fontSize: `18px` }} onClick={handleSentence}>{props.btnSentence}</button>
-                <button type="button" className="btn btn-light ms-3" style={{ fontSize: `18px` }} onClick={handleCamel}>{props.btnCamel}</button>
-                <button type="button" className="btn btn-light ms-3" style={{ fontSize: `18px` }} onClick={handleExtraSpace}>{props.btnExtraSpace}</button>
-                <button type="button" className="btn btn-light ms-3" style={{ fontSize: `18px` }} onClick={handleClear}>{props.btnClear}</button>
-                <button type="button" className="btn btn-light ms-3" style={{ fontSize: `18px` }} onClick={handleCopy}>{props.btnCopy}</button>
+                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleUpper}>{props.btnUpr}</button>
+                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleLower}>{props.btnLwr}</button>
+                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleSentence}>{props.btnSentence}</button>
+                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleCamel}>{props.btnCamel}</button>
+                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleExtraSpace}>{props.btnExtraSpace}</button>
+                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleClear}>{props.btnClear}</button>
+                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleCopy}>{props.btnCopy}</button>
             </div>
 
-            <div className="container my-4">
+            <div className="container my-4"> 
                 <h2 className="heading">Text Summary</h2>
                 <p className="Content">There are {text.split(/\s+/).filter(word => /[a-zA-Z]+/.test(word)).length} words and {text.length} characters.</p>
                 {(() => {
@@ -86,7 +91,7 @@ export default function Home(props) {
                 })()}
 
                 <h2 className="heading">Preview</h2>
-                <textarea className="form-control" id="myBox" rows="5" value={text} readOnly style={{ width: '100%', resize: 'none' }}></textarea>
+                <textarea className="form-control" id="myBox" rows="5" value={text} readOnly style={{width: '100%', resize: 'none'}}></textarea>
             </div>
 
         </>
