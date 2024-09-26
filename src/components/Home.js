@@ -54,16 +54,16 @@ export default function Home(props) {
     };
 
     const[myStyle, stMyStyle] = useState({
-        color:'black',
-        backgroundColor: 'white',
+        color:'white',
+        backgroundColor: 'black',
     })
     
     const [text, setText] = useState("")
     return (
         <>
-            <div className="container" style={myStyle}>
+            <div className="container">
                 <div className="mb-3">
-                    <label htmlFor="exampleFormControlTextarea1" className="form-label" style={{ fontSize: `25px`, fontWeight: `bold` }}>{props.labelText}</label>
+                    <label htmlFor="exampleFormControlTextarea1" className="form-label" style={{fontSize: `25px`, fontWeight: `bold` }}>{props.labelText}</label>
                     <textarea className="form-control" id="exampleFormControlTextarea1" placeholder='Enter your text here' rows="10" onChange={handleChange} value={text}></textarea>
                 </div>
             </div>
