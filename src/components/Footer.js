@@ -2,8 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Footer(props) {
+
+    const footerStyle = {
+        backgroundColor: props.mode ? '#252424' : '#f8f9fa',
+        color: props.mode ? 'white' : 'black'
+    };
+
     return (
-        <footer className="bg-body-tertiary text-center text-lg-start">
+        <footer className="text-center text-lg-start"   style={footerStyle}>
             <div className="container p-4">
                 <div className="row">
                     <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
@@ -18,7 +24,7 @@ export default function Footer(props) {
                         <ul className="list-unstyled d-flex justify-content-center">
                             {props.socialLinks.map((link, index) => (
                                 <li className="me-3" key={index}>
-                                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-dark">
+                                    <a href={link.href} target="_blank" rel="noopener noreferrer" style={{ color: props.mode ? 'white' : 'black' }}>
                                         <i className={link.icon}></i> {link.name}
                                     </a>
                                 </li>
@@ -28,7 +34,7 @@ export default function Footer(props) {
                 </div>
             </div>
 
-            <div className="text-center p-3" style={{ backgroundColor: '#f8f9fa' }}>
+            <div className="text-center p-3" style={footerStyle}>
                 © {new Date().getFullYear()} Case Converter. All Rights Reserved.
             </div>
         </footer>
@@ -54,5 +60,6 @@ Footer.propTypes = {
             href: PropTypes.string.isRequired,
             icon: PropTypes.string.isRequired
         })
-    )
+    ),
+    mode: PropTypes.bool
 };

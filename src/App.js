@@ -15,9 +15,9 @@ function App() {
   return (
     <>
     <Navbar  mode = {mode} toggleMode = {toggleMode} />
-    <Home mode = {mode} />
+    <Home mode = {mode}/>
     {/* <About/> */}
-    <Footer/>
+    <Footer mode = {mode}/>
     </>
   );
 }

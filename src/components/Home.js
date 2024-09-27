@@ -54,13 +54,17 @@ export default function Home(props) {
     };
 
     const [text, setText] = useState("")
+
+    const backgroundColor = props.mode ? '#333333' : '#EEEEEE';
+    const textColor = props.mode ? 'white' : 'black';
+
     return (
         <>
-            <div className={props.mode ? 'bg-dark text-light' : 'bg-body-tertiary text-dark'} style={{ minHeight: '100vh' }}>
+            <div style={{ backgroundColor: backgroundColor, color: textColor, minHeight: '100vh' }}>
                 <div className="container">
                     <div className="mb-3">
                         <label htmlFor="exampleFormControlTextarea1" className="form-label" style={{ fontSize: `25px`, fontWeight: `bold` }}>{props.labelText}</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" placeholder='Enter your text here' rows="10" onChange={handleChange} value={text}></textarea>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" placeholder='Enter your text here' rows="10" onChange={handleChange} value={text} style={{ backgroundColor: props.mode ? '#444444' : '#F3F3F3', color: textColor }}></textarea>
                     </div>
                 </div>
 
@@ -87,7 +91,7 @@ export default function Home(props) {
                     })()}
 
                     <h2 className="heading">Preview</h2>
-                    <textarea className="form-control" id="myBox" rows="5" value={text} readOnly style={{ width: '100%', resize: 'none' }}></textarea>
+                    <textarea className="form-control" id="myBox" rows="6" value={text} readOnly style={{ width: '100%', resize: 'none', backgroundColor: props.mode ? '#444444' : '#F3F3F3', color: textColor }}></textarea>
                 </div>
             </div>
         </>
