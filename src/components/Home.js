@@ -91,7 +91,7 @@ export default function Home(props) {
                     })()}
 
                     <h2 className="heading">Preview</h2>
-                    <textarea className="form-control" id="myBox" rows="6" value={text} readOnly style={{ width: '100%', resize: 'none', backgroundColor: props.mode ? '#444444' : '#F3F3F3', color: textColor }}></textarea>
+                    <textarea className="form-control" id="myBox" rows="6" value={text.length>0?text:"Enter something in the text area to preview it"} readOnly style={{ width: '100%', resize: 'none', backgroundColor: props.mode ? '#444444' : '#F3F3F3', color: textColor }}></textarea>
                 </div>
             </div>
         </>
