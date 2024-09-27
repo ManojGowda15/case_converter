@@ -53,47 +53,43 @@ export default function Home(props) {
         setText(event.target.value);
     };
 
-    const[myStyle, stMyStyle] = useState({
-        color:'white',
-        backgroundColor: 'black',
-    })
-    
     const [text, setText] = useState("")
     return (
         <>
-            <div className="container">
-                <div className="mb-3">
-                    <label htmlFor="exampleFormControlTextarea1" className="form-label" style={{fontSize: `25px`, fontWeight: `bold` }}>{props.labelText}</label>
-                    <textarea className="form-control" id="exampleFormControlTextarea1" placeholder='Enter your text here' rows="10" onChange={handleChange} value={text}></textarea>
+            <div className={props.mode ? 'bg-dark text-light' : 'bg-body-tertiary text-dark'} style={{ minHeight: '100vh' }}>
+                <div className="container">
+                    <div className="mb-3">
+                        <label htmlFor="exampleFormControlTextarea1" className="form-label" style={{ fontSize: `25px`, fontWeight: `bold` }}>{props.labelText}</label>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" placeholder='Enter your text here' rows="10" onChange={handleChange} value={text}></textarea>
+                    </div>
+                </div>
+
+                <div className="container">
+                    <button type="button" className="btn btn-light ms-3" style={{ fontSize: '18px' }} onClick={handleUpper}>{props.btnUpr}</button>
+                    <button type="button" className="btn btn-light ms-3" style={{ fontSize: '18px' }} onClick={handleLower}>{props.btnLwr}</button>
+                    <button type="button" className="btn btn-light ms-3" style={{ fontSize: '18px' }} onClick={handleSentence}>{props.btnSentence}</button>
+                    <button type="button" className="btn btn-light ms-3" style={{ fontSize: '18px' }} onClick={handleCamel}>{props.btnCamel}</button>
+                    <button type="button" className="btn btn-light ms-3" style={{ fontSize: '18px' }} onClick={handleExtraSpace}>{props.btnExtraSpace}</button>
+                    <button type="button" className="btn btn-light ms-3" style={{ fontSize: '18px' }} onClick={handleClear}>{props.btnClear}</button>
+                    <button type="button" className="btn btn-light ms-3" style={{ fontSize: '18px' }} onClick={handleCopy}>{props.btnCopy}</button>
+                </div>
+
+                <div className="container my-4">
+                    <h2 className="heading">Text Summary</h2>
+                    <p className="Content">There are {text.split(/\s+/).filter(word => /[a-zA-Z]+/.test(word)).length} words and {text.length} characters.</p>
+                    {(() => {
+                        const words = text.split(/\s+/).filter(word => /[a-zA-Z]/.test(word));
+                        const readTimeSeconds = 0.192 * words.length;
+                        const readTimeMinutes = (readTimeSeconds / 60).toFixed(2);
+                        return (
+                            <p className="Content">It takes {readTimeSeconds.toFixed(2)} seconds or {readTimeMinutes} minutes to read this content.</p>
+                        );
+                    })()}
+
+                    <h2 className="heading">Preview</h2>
+                    <textarea className="form-control" id="myBox" rows="5" value={text} readOnly style={{ width: '100%', resize: 'none' }}></textarea>
                 </div>
             </div>
-
-            <div className="container">
-                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleUpper}>{props.btnUpr}</button>
-                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleLower}>{props.btnLwr}</button>
-                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleSentence}>{props.btnSentence}</button>
-                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleCamel}>{props.btnCamel}</button>
-                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleExtraSpace}>{props.btnExtraSpace}</button>
-                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleClear}>{props.btnClear}</button>
-                <button type="button" className="btn btn-light ms-3"  style={{fontSize: '18px'}} onClick={handleCopy}>{props.btnCopy}</button>
-            </div>
-
-            <div className="container my-4"> 
-                <h2 className="heading">Text Summary</h2>
-                <p className="Content">There are {text.split(/\s+/).filter(word => /[a-zA-Z]+/.test(word)).length} words and {text.length} characters.</p>
-                {(() => {
-                    const words = text.split(/\s+/).filter(word => /[a-zA-Z]/.test(word));
-                    const readTimeSeconds = 0.192 * words.length;
-                    const readTimeMinutes = (readTimeSeconds / 60).toFixed(2);
-                    return (
-                        <p className="Content">It takes {readTimeSeconds.toFixed(2)} seconds or {readTimeMinutes} minutes to read this content.</p>
-                    );
-                })()}
-
-                <h2 className="heading">Preview</h2>
-                <textarea className="form-control" id="myBox" rows="5" value={text} readOnly style={{width: '100%', resize: 'none'}}></textarea>
-            </div>
-
         </>
     )
 }

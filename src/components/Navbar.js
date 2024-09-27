@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
-
 export default function Navbar(props) {
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <nav className= {`navbar navbar-expand-lg ${props.mode ? 'navbar-dark bg-dark' : 'navbar-light bg-body-tertiary'}`}>
                 <div className="container-fluid">
                     <a className="navbar-brand" style={{fontSize: `30px`,fontWeight: `bold`}} href="/logo">{props.brandName}</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,8 +21,8 @@ export default function Navbar(props) {
                     </div>
                 </div>
                 <div className="form-check form-switch m-4" style={{ position: '', left: '10px' }}>
-                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
-                        <label className="form-check-label ms-2" htmlFor="flexSwitchCheckDefault">{props.darkModeLabel}</label>
+                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked = {props.mode} onChange={props.toggleMode} />
+                        <label className="form-check-label ms-2" htmlFor="flexSwitchCheckDefault">{props.mode ? 'Light Mode' : 'Dark Mode'}</label>
                 </div>
             </nav>
         </>
@@ -32,7 +30,6 @@ export default function Navbar(props) {
 }
 Navbar.defaultProps = {
     brandName : 'CASE CONVERTER',
-    darkModeLabel : 'Dark',
     navLinks : [
         {name : 'Home', href : '/home'},
         {name : 'About', href : '/about'},
@@ -42,11 +39,12 @@ Navbar.defaultProps = {
 
 Navbar.propTypes = {
     brandName : PropTypes.string,
-    darkModeLabel : PropTypes.string,
     navLinks : PropTypes.arrayOf(
         PropTypes.shape({
             name : PropTypes.string.isRequired,
             href : PropTypes.string.isRequired
         })
-    )
+    ),
+    mode: PropTypes.bool.isRequired,
+    toggleMode: PropTypes.func.isRequired
 };
