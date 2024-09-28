@@ -117,5 +117,6 @@ Home.propTypes = {
     btnSentence: PropTypes.string,
     btnExtraSpace: PropTypes.string,
     btnCamel: PropTypes.string,
+    btnClear:PropTypes.string,
     btnCopy: PropTypes.string,
 }
