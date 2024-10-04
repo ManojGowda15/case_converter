@@ -15,12 +15,12 @@ function App() {
       msg: message,
       type: type,
     });
-    setTimeout(() => setAlert(null),2000);
+    setTimeout(() => setAlert(null),1000);
   }
 
   const toggleMode = () => {
     setMode(!mode);
-    showAlert(`Mode has been switched to ${!mode ? 'Dark' : 'Light'}!`, 'Successfully');
+    showAlert(`Mode has been switched to ${!mode ? 'Dark' : 'Light'}!`, 'success');
   };
 
   return (
